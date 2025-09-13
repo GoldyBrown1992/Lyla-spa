@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lyla - Luxury Head Spa & Wellness</title>
+    <title>iiyla - Luxury Head Spa & Wellness</title>
+    <!-- Stripe Integration -->
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         * {
             margin: 0;
@@ -397,6 +399,47 @@
             align-items: center;
             justify-content: center;
             color: white;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, #b8a9a3 0%, #c8b8b0 100%);
+            position: relative;
+        }
+
+        .faq .section-title {
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--dark);
+            text-transform: lowercase;
+            letter-spacing: 2px;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .faq-item h3 {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            color: var(--dark);
+            letter-spacing: 1px;
+        }
+
+        .faq-item p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         /* Booking Modal */
@@ -812,13 +855,14 @@
         <div class="nav-container">
             <div class="logo">
                 <span class="lotus">❀</span>
-                <span>LYLA</span>
+                <span>iiyla</span>
                 <span style="font-size: 14px; font-style: italic; font-weight: 300; letter-spacing: 2px; margin-left: 8px;">head spa</span>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">HOME</a></li>
                 <li><a href="#services">SERVICES</a></li>
                 <li><a href="#about">ABOUT</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">CONTACT</a></li>
             </ul>
             <button class="book-nav-btn" onclick="openBooking()">BOOK NOW</button>
@@ -828,8 +872,8 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>LYLA</h1>
-            <p class="tagline">RELAX. REVIVE. RENEW.</p>
+            <h1>iiyla</h1>
+            <p class="tagline" style="text-transform: lowercase; font-style: italic;">head spa</p>
             <p class="hero-description">
                 Experience the ultimate in head spa luxury. Our holistic treatments rejuvenate both mind and hair, 
                 leaving you refreshed and renewed.
@@ -844,77 +888,50 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="section-header">
-            <h2 class="section-title">OUR SERVICES</h2>
-            <p class="section-subtitle">
-                Indulge in our carefully curated treatments designed to restore balance and enhance your natural beauty
+            <h2 class="section-title" style="text-transform: lowercase;">menu</h2>
+            <p class="section-subtitle" style="font-style: italic;">
+                iiyla head spa
             </p>
         </div>
 
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">💆</div>
-                <h3 class="service-title">Signature Head Spa</h3>
+                <div class="service-icon">💧</div>
+                <h3 class="service-title">Whispering Waters</h3>
                 <p class="service-description">
-                    Our signature 90-minute journey includes scalp analysis, deep cleansing, massage, hair mask, and styling. 
-                    Experience ultimate relaxation with our premium essential oils.
+                    A gentle escape into serenity. Unwind with a soothing scalp massage, release tension with 
+                    a neck & décolleté massage, refresh your hair with a nurturing hair wash, 
+                    and let a calming face massage restore your glow.
                 </p>
-                <p class="service-price">$180</p>
-                <p class="service-duration">90 minutes</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">✨</div>
-                <h3 class="service-title">Scalp Detox Treatment</h3>
-                <p class="service-description">
-                    Deep cleansing treatment to remove buildup and toxins. Includes exfoliation, steam therapy, 
-                    and specialized serums for a healthier scalp.
-                </p>
-                <p class="service-price">$150</p>
-                <p class="service-duration">75 minutes</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🌿</div>
-                <h3 class="service-title">Hair Rejuvenation</h3>
-                <p class="service-description">
-                    Intensive treatment combining Japanese techniques with modern technology to restore 
-                    hair vitality, shine, and strength.
-                </p>
-                <p class="service-price">$200</p>
-                <p class="service-duration">120 minutes</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🌸</div>
-                <h3 class="service-title">Express Head Massage</h3>
-                <p class="service-description">
-                    Quick relief for tension and stress. Perfect for lunch breaks or when you need 
-                    a moment of tranquility in your busy day.
-                </p>
-                <p class="service-price">$80</p>
-                <p class="service-duration">30 minutes</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">💎</div>
-                <h3 class="service-title">Luxury Hair Spa Package</h3>
-                <p class="service-description">
-                    The ultimate indulgence featuring our full range of treatments, champagne service, 
-                    and take-home luxury hair care products.
-                </p>
-                <p class="service-price">$350</p>
-                <p class="service-duration">180 minutes</p>
+                <p class="service-price">$65</p>
+                <p class="service-duration">45 minutes</p>
+                <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="quickBook('Whispering Waters', 65)">Book Now</button>
             </div>
 
             <div class="service-card">
                 <div class="service-icon">🌊</div>
-                <h3 class="service-title">Hydration Therapy</h3>
+                <h3 class="service-title">Tranquil Drift</h3>
                 <p class="service-description">
-                    Intensive moisture treatment for dry, damaged hair. Includes steam therapy, 
-                    deep conditioning, and protective styling.
+                    Flow into deep relaxation. Relax deeply with a restorative scalp massage, 
+                    followed by a neck & décolleté massage. A luxury hair wash refreshes your senses, 
+                    while arm and foot massage soothes the body. Finish with a gentle face massage for total harmony.
                 </p>
-                <p class="service-price">$130</p>
-                <p class="service-duration">60 minutes</p>
+                <p class="service-price">$85</p>
+                <p class="service-duration">65 minutes</p>
+                <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="quickBook('Tranquil Drift', 85)">Book Now</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌸</div>
+                <h3 class="service-title">Serenity Bloom</h3>
+                <p class="service-description">
+                    A complete ritual of renewal. Indulge in a full journey of calm with a restorative scalp massage, 
+                    décolleté massage, a refreshing hair wash, soothing arm & foot massage, 
+                    and a rejuvenating mini facial. Every touch nurtures, relaxes, and restores inner radiance.
+                </p>
+                <p class="service-price">$135</p>
+                <p class="service-duration">85 minutes</p>
+                <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="quickBook('Serenity Bloom', 135)">Book Now</button>
             </div>
         </div>
     </section>
@@ -924,9 +941,9 @@
         <div class="about-container">
             <div class="about-image"></div>
             <div class="about-content">
-                <h2>Welcome to Lyla</h2>
+                <h2>Welcome to iiyla</h2>
                 <p>
-                    At Lyla Head Spa, we believe in the transformative power of holistic wellness. 
+                    At iiyla Head Spa, we believe in the transformative power of holistic wellness. 
                     Our sanctuary combines ancient Japanese head spa traditions with modern techniques 
                     to create an unparalleled experience of relaxation and rejuvenation.
                 </p>
@@ -955,6 +972,46 @@
                 </div>
             </div>
         </div>
+        <div class="lotus-watermark" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); opacity: 0.1; font-size: 60px; color: var(--primary);">❀</div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="section-header">
+            <h2 class="section-title">frequently asked questions</h2>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <h3>How often should my head spa ritual be?</h3>
+                <p>We recommend once a month to nourish your scalp, awaken hair follicles, and immerse yourself in deep relaxation.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Do I need to wash my hair before my visit?</h3>
+                <p>Not at all — we'll take care of everything for you.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Do you use professional products?</h3>
+                <p>Yes, we use premium haircare infused with aromatherapy for a truly soothing experience.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Is it safe during pregnancy or while breastfeeding?</h3>
+                <p>Absolutely. Head Spa is a gentle and restorative ritual. We adjust the massage bed for your comfort, making it especially nurturing during pregnancy and postpartum.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Can I dry my hair after the treatment?</h3>
+                <p>Yes, a blow dryer and comb are available in the treatment room. To ensure a serene flow for all guests, we kindly ask to limit drying time to 10 minutes. ✨</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <span style="font-size: 40px; color: var(--primary); opacity: 0.3;">❀</span>
+            <p style="font-size: 24px; font-style: italic; color: var(--dark); margin-top: 10px; letter-spacing: 2px;">iiyla</p>
+        </div>
     </section>
 
     <!-- Contact Section -->
@@ -973,21 +1030,21 @@
                     <div class="contact-icon">📍</div>
                     <div class="contact-details">
                         <h4>Location</h4>
-                        <p>123 Wellness Street<br>Vancouver, BC V6B 2K9</p>
+                        <p>8140 128 St #342A<br>Surrey, BC V3W 1R1</p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">📞</div>
                     <div class="contact-details">
                         <h4>Phone</h4>
-                        <p>(604) 555-0123</p>
+                        <p>(604) 543-4688</p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">✉</div>
                     <div class="contact-details">
                         <h4>Email</h4>
-                        <p>hello@lylaspa.com</p>
+                        <p>hello@iiylaspa.com</p>
                     </div>
                 </div>
             </div>
@@ -995,16 +1052,8 @@
             <div class="hours-table">
                 <h3>Hours of Operation</h3>
                 <div class="hour-row">
-                    <span>Monday - Friday</span>
-                    <span>10:00 AM - 8:00 PM</span>
-                </div>
-                <div class="hour-row">
-                    <span>Saturday</span>
-                    <span>9:00 AM - 7:00 PM</span>
-                </div>
-                <div class="hour-row">
-                    <span>Sunday</span>
-                    <span>10:00 AM - 6:00 PM</span>
+                    <span>Monday - Sunday</span>
+                    <span>9:00 AM - 8:00 PM</span>
                 </div>
             </div>
         </div>
@@ -1018,7 +1067,7 @@
                 <a href="#" class="social-link">ig</a>
                 <a href="#" class="social-link">tw</a>
             </div>
-            <p class="footer-text">© 2025 Lyla Head Spa. All rights reserved.</p>
+            <p class="footer-text">© 2025 iiyla Head Spa. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1043,29 +1092,17 @@
                 <div class="form-step active" id="step1">
                     <h3>Select Your Service</h3>
                     <div class="service-selection">
-                        <div class="service-option" onclick="selectService(this, 'Signature Head Spa')">
-                            <h4>Signature Head Spa</h4>
-                            <p>$180 - 90 min</p>
+                        <div class="service-option" onclick="selectService(this, 'Whispering Waters')">
+                            <h4>Whispering Waters</h4>
+                            <p>$65 - 45 min</p>
                         </div>
-                        <div class="service-option" onclick="selectService(this, 'Scalp Detox')">
-                            <h4>Scalp Detox</h4>
-                            <p>$150 - 75 min</p>
+                        <div class="service-option" onclick="selectService(this, 'Tranquil Drift')">
+                            <h4>Tranquil Drift</h4>
+                            <p>$85 - 65 min</p>
                         </div>
-                        <div class="service-option" onclick="selectService(this, 'Hair Rejuvenation')">
-                            <h4>Hair Rejuvenation</h4>
-                            <p>$200 - 120 min</p>
-                        </div>
-                        <div class="service-option" onclick="selectService(this, 'Express Massage')">
-                            <h4>Express Massage</h4>
-                            <p>$80 - 30 min</p>
-                        </div>
-                        <div class="service-option" onclick="selectService(this, 'Luxury Package')">
-                            <h4>Luxury Package</h4>
-                            <p>$350 - 180 min</p>
-                        </div>
-                        <div class="service-option" onclick="selectService(this, 'Hydration Therapy')">
-                            <h4>Hydration Therapy</h4>
-                            <p>$130 - 60 min</p>
+                        <div class="service-option" onclick="selectService(this, 'Serenity Bloom')">
+                            <h4>Serenity Bloom</h4>
+                            <p>$135 - 85 min</p>
                         </div>
                     </div>
                 </div>
@@ -1107,7 +1144,7 @@
                     </div>
                     <div class="form-group">
                         <label>Phone</label>
-                        <input type="tel" id="phone" placeholder="(604) 555-0123">
+                        <input type="tel" id="phone" placeholder="(604) 543-4688">
                     </div>
                     <div class="form-group">
                         <label>Special Requests (Optional)</label>
@@ -1136,7 +1173,7 @@
                 <div class="success-message" id="successMessage">
                     <div class="success-icon">✓</div>
                     <h3>Booking Confirmed!</h3>
-                    <p>Thank you for booking with Lyla Spa. We've sent a confirmation email with all the details.</p>
+                    <p>Thank you for booking with iiyla Spa. We've sent a confirmation email with all the details.</p>
                     <p style="margin-top: 20px;">We look forward to seeing you!</p>
                     <button class="btn-primary" onclick="closeBooking()" style="margin-top: 20px;">Done</button>
                 </div>
@@ -1151,6 +1188,27 @@
     </div>
 
     <script>
+        // ============================
+        // STRIPE CONFIGURATION
+        // ============================
+        // Replace with your actual Stripe PUBLISHABLE key (starts with pk_)
+        // Get it from: https://dashboard.stripe.com/apikeys
+        // NEVER put your SECRET key here - only publishable!
+        const STRIPE_PUBLISHABLE_KEY = 'pk_test_YOUR_PUBLISHABLE_KEY_HERE';
+        
+        // For Stripe Payment Links (no backend needed):
+        // 1. Create payment links at: https://dashboard.stripe.com/payment-links
+        // 2. Add them below for each service
+        const PAYMENT_LINKS = {
+            'Whispering Waters': 'https://buy.stripe.com/YOUR_LINK',
+            'Tranquil Drift': 'https://buy.stripe.com/YOUR_LINK',
+            'Serenity Bloom': 'https://buy.stripe.com/YOUR_LINK'
+        };
+        
+        // ============================
+        // BOOKING SYSTEM
+        // ============================
+        
         // Booking System
         let currentStep = 1;
         let bookingData = {
@@ -1301,13 +1359,167 @@
         }
 
         function submitBooking() {
-            // Hide form and show success message
+            // Show payment processing
             document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+            
+            // Get service details for payment
+            const serviceDetails = getServiceDetails(bookingData.service);
+            
+            // Process payment with Stripe
+            processStripePayment(serviceDetails);
+        }
+
+        // Initialize Stripe (only if key is configured)
+        let stripe = null;
+        if (STRIPE_PUBLISHABLE_KEY && !STRIPE_PUBLISHABLE_KEY.includes('YOUR_PUBLISHABLE_KEY')) {
+            stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+        }
+
+        // Service details with Stripe Price IDs
+        function getServiceDetails(serviceName) {
+            const services = {
+                'Whispering Waters': {
+                    name: 'Whispering Waters',
+                    price: 6500, // in cents ($65.00)
+                    priceId: 'price_whispering_waters' // Create this in Stripe Dashboard
+                },
+                'Tranquil Drift': {
+                    name: 'Tranquil Drift',
+                    price: 8500, // $85.00
+                    priceId: 'price_tranquil_drift'
+                },
+                'Serenity Bloom': {
+                    name: 'Serenity Bloom',
+                    price: 13500, // $135.00
+                    priceId: 'price_serenity_bloom'
+                }
+            };
+            return services[serviceName] || services['Whispering Waters'];
+        }
+
+        // Process payment with Stripe Checkout
+        async function processStripePayment(serviceDetails) {
+            try {
+                // Check if Stripe is configured
+                if (stripe) {
+                    // For production, you would create a checkout session on your backend
+                    // This is just a demo of how it would work
+                    
+                    // Option: Use Payment Links if configured
+                    const paymentLink = PAYMENT_LINKS[bookingData.service];
+                    if (paymentLink && !paymentLink.includes('YOUR_LINK')) {
+                        // Add booking details to payment link as metadata
+                        const urlParams = new URLSearchParams({
+                            client_reference_id: bookingData.email,
+                            prefilled_email: bookingData.email
+                        });
+                        window.location.href = `${paymentLink}?${urlParams}`;
+                        return;
+                    }
+                    
+                    // Otherwise show payment instructions
+                    showPaymentInstructions(serviceDetails);
+                } else {
+                    // Stripe not configured, show alternative payment options
+                    showPaymentInstructions(serviceDetails);
+                }
+            } catch (error) {
+                console.error('Payment error:', error);
+                showPaymentInstructions(serviceDetails);
+            }
+        }
+
+        // Show payment instructions if Stripe not configured
+        function showPaymentInstructions(serviceDetails) {
+            document.getElementById('successMessage').innerHTML = `
+                <div class="success-icon" style="background: var(--primary);">💳</div>
+                <h3>Complete Your Booking</h3>
+                <div style="background: var(--light); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <p><strong>Service:</strong> ${serviceDetails.name}</p>
+                    <p><strong>Amount:</strong> $${(serviceDetails.price / 100).toFixed(2)}</p>
+                    <p><strong>Date:</strong> ${new Date(bookingData.date).toLocaleDateString()}</p>
+                    <p><strong>Time:</strong> ${bookingData.time}</p>
+                </div>
+                <p style="margin: 20px 0;">Your appointment is reserved! Please complete payment to confirm.</p>
+                
+                <!-- For testing/demo purposes -->
+                <div style="background: #f0f0f0; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <p style="font-size: 14px; color: #666;">
+                        <strong>Payment Options:</strong><br>
+                        1. Pay at the salon<br>
+                        2. Call us at (604) 543-4688<br>
+                        3. Email transfer to hello@iiylaspa.com
+                    </p>
+                </div>
+                
+                <button class="btn-primary" onclick="completeBookingWithoutPayment()" style="margin-top: 20px;">Confirm Booking</button>
+            `;
             document.getElementById('successMessage').classList.add('active');
             document.getElementById('formNav').style.display = 'none';
+        }
+
+        // Complete booking without payment (for testing)
+        function completeBookingWithoutPayment() {
+            document.getElementById('successMessage').innerHTML = `
+                <div class="success-icon">✓</div>
+                <h3>Booking Confirmed!</h3>
+                <p>Thank you for booking with iiyla Spa. We've sent a confirmation email with all the details.</p>
+                <p style="margin-top: 20px;">We look forward to seeing you!</p>
+                <button class="btn-primary" onclick="closeBooking()" style="margin-top: 20px;">Done</button>
+            `;
             
-            // In a real application, this would send data to a server
-            console.log('Booking submitted:', bookingData);
+            // In production, this would save to database
+            console.log('Booking completed:', bookingData);
+        }
+
+        // Add Stripe Elements for custom payment form (optional)
+        function createCustomPaymentForm() {
+            const elements = stripe.elements();
+            const cardElement = elements.create('card', {
+                style: {
+                    base: {
+                        fontSize: '16px',
+                        fontFamily: 'Georgia, serif',
+                        color: '#2c2c2c',
+                        '::placeholder': {
+                            color: '#999'
+                        }
+                    }
+                }
+            });
+            
+            // Mount to a div with id="card-element" if you want custom form
+            // cardElement.mount('#card-element');
+        }
+
+        // Quick book function for direct service booking
+        function quickBook(serviceName, price) {
+            // Set the service
+            bookingData.service = serviceName;
+            
+            // Open booking modal at step 2
+            openBooking();
+            currentStep = 2;
+            showStep(2);
+            
+            // Pre-select the service
+            document.querySelectorAll('.service-option').forEach(option => {
+                if (option.textContent.includes(serviceName.split(' ')[0])) {
+                    option.classList.add('selected');
+                }
+            });
+        }
+
+        // Create Stripe Payment Link
+        function createStripePaymentLink(serviceName, price) {
+            const link = PAYMENT_LINKS[serviceName];
+            if (link && !link.includes('YOUR_LINK')) {
+                // If you have configured Stripe Payment Links, open them
+                window.open(link, '_blank');
+            } else {
+                // Otherwise use the booking system
+                quickBook(serviceName, price);
+            }
         }
 
         // Navbar scroll effect
