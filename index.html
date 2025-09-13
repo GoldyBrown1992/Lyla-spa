@@ -279,6 +279,8 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card::before {
@@ -326,6 +328,7 @@
             color: #666;
             line-height: 1.6;
             margin-bottom: 20px;
+            flex-grow: 1;
         }
 
         .service-price {
@@ -337,6 +340,14 @@
 
         .service-duration {
             color: #999;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .service-card .btn-primary {
+            width: 100%;
+            margin-top: auto;
+            padding: 12px 25px;
             font-size: 14px;
         }
 
@@ -905,7 +916,7 @@
                 </p>
                 <p class="service-price">$65</p>
                 <p class="service-duration">45 minutes</p>
-                <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="quickBook('Whispering Waters', 65)">Book Now</button>
+                <button class="btn-primary" onclick="quickBook('Whispering Waters', 65)">Book Now</button>
             </div>
 
             <div class="service-card">
@@ -918,7 +929,7 @@
                 </p>
                 <p class="service-price">$85</p>
                 <p class="service-duration">65 minutes</p>
-                <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="quickBook('Tranquil Drift', 85)">Book Now</button>
+                <button class="btn-primary" onclick="quickBook('Tranquil Drift', 85)">Book Now</button>
             </div>
 
             <div class="service-card">
@@ -931,43 +942,7 @@
                 </p>
                 <p class="service-price">$135</p>
                 <p class="service-duration">85 minutes</p>
-                <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="quickBook('Serenity Bloom', 135)">Book Now</button>
-            </div>
-        </div>
-                <p class="service-description">
-                    A gentle escape into serenity. Unwind with a soothing scalp massage, release tension with 
-                    a neck & décolleté massage, refresh your hair with a nurturing hair wash, 
-                    and let a calming face massage restore your glow.
-                </p>
-                <p class="service-price">$65</p>
-                <p class="service-duration">45 minutes</p>
-                <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="quickBook('Whispering Waters', 65)">Book Now</button>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🌊</div>
-                <h3 class="service-title">Tranquil Drift</h3>
-                <p class="service-description">
-                    Flow into deep relaxation. Relax deeply with a restorative scalp massage, 
-                    followed by a neck & décolleté massage. A luxury hair wash refreshes your senses, 
-                    while arm and foot massage soothes the body. Finish with a gentle face massage for total harmony.
-                </p>
-                <p class="service-price">$85</p>
-                <p class="service-duration">65 minutes</p>
-                <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="quickBook('Tranquil Drift', 85)">Book Now</button>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🌸</div>
-                <h3 class="service-title">Serenity Bloom</h3>
-                <p class="service-description">
-                    A complete ritual of renewal. Indulge in a full journey of calm with a restorative scalp massage, 
-                    décolleté massage, a refreshing hair wash, soothing arm & foot massage, 
-                    and a rejuvenating mini facial. Every touch nurtures, relaxes, and restores inner radiance.
-                </p>
-                <p class="service-price">$135</p>
-                <p class="service-duration">85 minutes</p>
-                <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="quickBook('Serenity Bloom', 135)">Book Now</button>
+                <button class="btn-primary" onclick="quickBook('Serenity Bloom', 135)">Book Now</button>
             </div>
         </div>
     </section>
@@ -1283,9 +1258,16 @@
                 requests: ''
             };
             showStep(1);
+            document.querySelectorAll('.service-option').forEach(el => el.classList.remove('selected'));
             document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
             document.getElementById('successMessage').classList.remove('active');
             document.getElementById('formNav').style.display = 'flex';
+        }
+
+        function selectService(element, serviceName) {
+            document.querySelectorAll('.service-option').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            bookingData.service = serviceName;
         }
 
         function selectTime(element) {
