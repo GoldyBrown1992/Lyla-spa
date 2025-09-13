@@ -1283,16 +1283,9 @@
                 requests: ''
             };
             showStep(1);
-            document.querySelectorAll('.service-option').forEach(el => el.classList.remove('selected'));
             document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
             document.getElementById('successMessage').classList.remove('active');
             document.getElementById('formNav').style.display = 'flex';
-        }
-
-        function selectService(element, service) {
-            document.querySelectorAll('.service-option').forEach(el => el.classList.remove('selected'));
-            element.classList.add('selected');
-            bookingData.service = service;
         }
 
         function selectTime(element) {
