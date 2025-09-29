@@ -831,33 +831,66 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            nav {
-                padding: 15px 20px;
-            }
+@media (max-width: 768px) {
+    nav {
+        padding: 15px 20px;
+    }
 
-            .nav-links {
-                display: none;
-            }
+    .nav-links {
+        display: none;
+    }
 
-            .hero h1 {
-                font-size: 48px;
-            }
+    .hero h1 {
+        font-size: 48px;
+    }
 
-            .services-grid {
-                grid-template-columns: 1fr;
-                padding: 50px 20px;
-            }
+    .services-grid {
+        grid-template-columns: 1fr;
+        padding: 50px 20px;
+    }
 
-            .about-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
 
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
+    /* Fix features section on mobile */
+    .features {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .feature {
+        justify-content: flex-start;
+        padding: 5px 0;
+    }
+
+    .feature span {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    .feature-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* About section text on mobile */
+    .about-content h2 {
+        font-size: 32px;
+    }
+
+    .about-content p {
+        font-size: 16px;
+    }
+}
     </style>
 </head>
 <body>
